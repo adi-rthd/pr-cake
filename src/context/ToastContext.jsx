@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 
 const ToastContext = createContext();
@@ -25,22 +26,25 @@ export const ToastProvider = ({ children }) => {
   return (
     <ToastContext.Provider value={{ addToast }}>
       {children}
-      {/* Toast Container */}
-      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
-        {toasts.map((toast) => (
-          <div 
-            key={toast.id} 
-            className={`flex items-center justify-between gap-4 px-4 py-3 rounded-lg shadow-lg text-sm font-medium animate-slide-in-right ${
-              toast.type === 'success' ? 'bg-brand-veg text-white' : 'bg-brand-brown text-white'
-            }`}
-          >
-            <span>{toast.message}</span>
-            <button onClick={() => removeToast(toast.id)} className="opacity-80 hover:opacity-100">
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-        ))}
-      </div>
+      {/* Toast Container rendered as a Portal to body to avoid stacking context issues */}
+      {typeof document !== 'undefined' && createPortal(
+        <div className="fixed bottom-4 right-4 z-[99999] flex flex-col gap-2 pointer-events-none">
+          {toasts.map((toast) => (
+            <div 
+              key={toast.id} 
+              className={`pointer-events-auto flex items-center justify-between gap-4 px-4 py-3 rounded-lg shadow-2xl text-sm font-medium animate-slide-in-right ${
+                toast.type === 'success' ? 'bg-brand-veg text-white' : 'bg-brand-brown text-white'
+              }`}
+            >
+              <span>{toast.message}</span>
+              <button onClick={() => removeToast(toast.id)} className="opacity-80 hover:opacity-100 shrink-0">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          ))}
+        </div>,
+        document.body
+      )}
     </ToastContext.Provider>
   );
 };

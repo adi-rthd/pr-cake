@@ -141,8 +141,17 @@ const CartDrawer = () => {
       window.location.href = whatsappUrl;
 
     } catch (error) {
-      console.error('Error during checkout:', error);
-      addToast(t('orderError') || 'Failed to process checkout. Please try again.', 'error');
+      console.error('[PR Cake] Order submission failed:', error);
+      console.error('[PR Cake] Error code:', error?.code);
+      console.error('[PR Cake] Error message:', error?.message);
+      
+      // Ensure we display the actual failure reason if it's a known Firebase error
+      if (error?.code === 'permission-denied') {
+        addToast('Permission denied: Unable to save order to database.', 'error');
+      } else {
+        addToast(error?.message || t('orderError') || 'Failed to process checkout. Please try again.', 'error');
+      }
+    } finally {
       setIsSubmitting(false);
     }
 
