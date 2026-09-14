@@ -59,12 +59,14 @@ const MarketingCarousel = () => {
           <div className="animate-marquee-ltr flex gap-8 md:gap-12 pl-8 md:pl-12">
           {duplicatedItems.map((item, index) => (
             <div key={`${item.id}-${index}`} className="flex flex-col items-center gap-4 group shrink-0 w-40 md:w-56 cursor-pointer">
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full p-1.5 border-2 border-transparent group-hover:border-brand-rose transition-colors duration-500 relative overflow-hidden">
-                <img 
-                  src={item.imageUrl} 
-                  alt={item.title} 
-                  className="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform duration-700"
-                />
+              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full p-1.5 border-2 border-transparent group-hover:border-brand-rose transition-colors duration-500 shrink-0">
+                <div className="w-full aspect-square rounded-full overflow-hidden shadow-lg bg-white relative">
+                  <img 
+                    src={item.imageUrl} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
               </div>
               <div className="text-center px-2">
                 <h3 className="font-serif font-bold text-lg md:text-xl text-brand-brown mb-1 group-hover:text-brand-rose transition-colors">

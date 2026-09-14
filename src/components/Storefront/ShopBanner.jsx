@@ -7,7 +7,7 @@ const ShopBanner = ({ onOpenBuilder }) => {
 
   return (
     <div id="home" className="w-full bg-[#FAF7F2]">
-      <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12">
+      <div className="relative w-full max-w-[1400px] mx-auto px-4 md:px-10 lg:px-16 pt-8 pb-16 md:pt-14 md:pb-24 lg:pt-16 flex flex-col md:flex-row items-center gap-12 lg:gap-16">
 
         {/* Left Side (Text) */}
         <div className="w-full md:w-1/2 flex flex-col justify-center z-10">

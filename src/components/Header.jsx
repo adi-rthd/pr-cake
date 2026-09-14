@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useSettings } from '../context/SettingsContext';
 import { useLanguage } from '../context/LanguageContext';
 import SavedDetailsModal from './SavedDetailsModal';
+import logoImage from '../assets/LOGO.png';
 
 const Header = ({ searchTerm = '', setSearchTerm = () => {} }) => {
   const { cartItems, setIsCartOpen } = useCart();
@@ -44,16 +45,18 @@ const Header = ({ searchTerm = '', setSearchTerm = () => {} }) => {
 
   return (
     <header className="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E6DFD3]">
-      <div className="container mx-auto px-4 lg:px-6 py-3 lg:py-4 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-0">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-10 lg:px-16 py-3 md:py-3.5 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-0">
         
         <div className="flex items-center justify-between w-full md:w-auto">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <CakeSlice className="w-5 h-5 lg:w-6 lg:h-6 text-brand-brown" strokeWidth={2} />
-            <span className="font-serif text-2xl lg:text-3xl font-bold tracking-tight text-brand-brown">
-              {settings?.storeName || 'PR Cake'}
-            </span>
-            <div className="w-1.5 h-1.5 rounded-full bg-brand-rose ml-1 mt-1.5 lg:mt-2"></div>
+          <div className="flex items-center">
+            <a href="#home" className="flex items-center">
+              <img 
+                src={logoImage} 
+                alt="PR Cake" 
+                className="h-[40px] md:h-[58px] lg:h-[62px] w-auto object-contain shrink-0" 
+              />
+            </a>
           </div>
 
           {/* Right side controls - Mobile only */}

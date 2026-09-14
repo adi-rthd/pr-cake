@@ -13,8 +13,8 @@ const FeaturesBanner = ({ onOpenBuilder }) => {
   ];
 
   return (
-    <div className="container mx-auto px-6 mb-16">
-      
+    <div className="w-full max-w-[1400px] mx-auto px-4 md:px-10 lg:px-16 mb-16">
+
       {/* Custom Cake Promotional Banner */}
       <div className="w-full bg-[#E8DCCB] rounded-[2rem] overflow-hidden flex flex-col md:flex-row items-center justify-between mb-12 shadow-sm border border-[#D4C4B1]">
         <div className="p-10 md:p-16 flex-1">
@@ -24,18 +24,18 @@ const FeaturesBanner = ({ onOpenBuilder }) => {
           <p className="text-stone-700 font-medium mb-8 max-w-sm text-lg">
             {t('chooseBaseFlavour') || 'Choose the base, flavour, frosting, toppings and more.'}
           </p>
-          <button 
+          <button
             onClick={onOpenBuilder}
             className="bg-brand-brown hover:bg-[#2D1B19] text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg flex items-center justify-center gap-2 group w-fit"
           >
-            {t('startCustomizing') || 'Start Customizing'} 
+            {t('startCustomizing') || 'Start Customizing'}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
-        
+
         <div className="w-full md:w-1/2 h-[300px] md:h-[400px] relative hidden md:block">
-          <img 
-            src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=800&q=80" 
+          <img
+            src="src\assets\long_banner.png"
             alt="Custom Cake"
             className="absolute inset-0 w-full h-full object-cover rounded-l-[4rem]"
           />
@@ -56,7 +56,7 @@ const FeaturesBanner = ({ onOpenBuilder }) => {
           </div>
         ))}
       </div>
-      
+
     </div>
   );
 };

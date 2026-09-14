@@ -84,7 +84,7 @@ const ProductGallery = ({ onCustomize, searchTerm = '', setSearchTerm = () => {}
   });
 
   return (
-    <div className="container mx-auto px-6 py-16" id="cakes">
+    <div className="w-full max-w-[1400px] mx-auto px-4 md:px-10 lg:px-16 mb-16 pt-8" id="cakes">
       
       {/* Main Grid Area - Full Width */}
       <div className="w-full">

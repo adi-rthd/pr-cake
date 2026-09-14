@@ -48,11 +48,6 @@ body {
   overflow-x: clip;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
 
 /* Custom scrollbar for modals/drawers */
 .custom-scrollbar::-webkit-scrollbar {

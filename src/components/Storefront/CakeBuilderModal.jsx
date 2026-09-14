@@ -22,7 +22,7 @@ const CakeBuilderModal = ({ onClose }) => {
 
   const [step, setStep] = useState(1);
   const STEPS = ['Base', 'Flavour', 'Frosting', 'Toppings', 'Message', 'Review'];
-  
+
   // State selections
   const [base, setBase] = useState(null);
   const [weight, setWeight] = useState(null);
@@ -58,22 +58,22 @@ const CakeBuilderModal = ({ onClose }) => {
     if (!weightName) return 1;
     const normalized = weightName.toLowerCase().replace(/\s+/g, '');
     if (normalized.includes('1/2') || normalized.includes('0.5')) return 0.6;
-    
+
     const match = normalized.match(/([0-9.]+)(?=kg)/);
     if (match) {
-        const val = parseFloat(match[1]);
-        if (!isNaN(val)) return val === 2 ? 1.8 : val;
+      const val = parseFloat(match[1]);
+      if (!isNaN(val)) return val === 2 ? 1.8 : val;
     }
-    
+
     return 1;
   };
 
   const calculateTotal = () => {
     if (!base || !weight) return 0;
-    
+
     const multiplier = weight.price < 10 ? weight.price : getWeightMultiplier(weight.name);
     let total = (base.price || 0) * multiplier;
-    
+
     if (flavour) total += flavour.price;
     if (frosting) total += frosting.price;
     toppings.forEach(t => {
@@ -145,16 +145,16 @@ const CakeBuilderModal = ({ onClose }) => {
   const modalContent = (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center sm:p-6 overflow-hidden">
       <div className="absolute inset-0 bg-stone-900/40 backdrop-blur-sm transition-opacity" onClick={onClose}></div>
-      
+
       <div className="relative bg-white sm:rounded-3xl shadow-2xl w-full h-[100dvh] sm:h-auto max-w-2xl overflow-hidden flex flex-col sm:max-h-[calc(100dvh-32px)] md:max-h-[90dvh] animate-fade-in">
-        
+
         {/* Header & Progress */}
         <div className="py-4 px-6 md:py-4 md:px-6 bg-white border-b border-[#E6DFD3] z-10 shrink-0">
           <div className="flex justify-between items-start mb-8">
             <div>
               <span className="text-[10px] font-bold text-brand-rose uppercase tracking-[0.2em] mb-2 block">{t('designUniqueCake') || "DESIGN YOUR CAKE"}</span>
               <h2 className="text-3xl font-bold font-serif text-brand-brown">Build Custom Cake</h2>
-              <p className="text-sm font-medium text-stone-500 mt-2">Step {step} of 6 &bull; {STEPS[step-1]}</p>
+              <p className="text-sm font-medium text-stone-500 mt-2">Step {step} of 6 &bull; {STEPS[step - 1]}</p>
             </div>
             <button onClick={onClose} className="p-2 hover:bg-[#FAF7F2] rounded-full transition-colors text-stone-400 border border-transparent hover:border-[#E6DFD3]">
               <X className="w-5 h-5" />
@@ -170,10 +170,9 @@ const CakeBuilderModal = ({ onClose }) => {
               const isPast = step > num;
               return (
                 <div key={s} className="flex flex-col items-center gap-2 bg-white px-2">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
-                    isActive ? 'bg-brand-brown text-white shadow-md' :
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${isActive ? 'bg-brand-brown text-white shadow-md' :
                     isPast ? 'bg-brand-brown text-white' : 'bg-white border border-[#E6DFD3] text-stone-300'
-                  }`}>
+                    }`}>
                     {isPast ? <Check className="w-4 h-4" strokeWidth={3} /> : num}
                   </div>
                 </div>
@@ -184,7 +183,7 @@ const CakeBuilderModal = ({ onClose }) => {
 
         {/* Body Scrollable Area */}
         <div className="flex-1 min-h-0 overflow-y-auto p-6 custom-scrollbar bg-white">
-          
+
           {/* STEP 1: BASE & WEIGHT */}
           {step === 1 && (
             <div className="animate-fade-in space-y-8">
@@ -193,7 +192,7 @@ const CakeBuilderModal = ({ onClose }) => {
                   <h3 className="text-2xl font-serif font-bold text-brand-brown">Select Base</h3>
                   <p className="text-sm text-stone-500 mt-2 font-medium">Choose the cake base that sets the perfect foundation for your design.</p>
                 </div>
-                
+
                 {/* Helper Box */}
                 <div className="bg-white border border-[#E6DFD3] p-4 rounded-2xl flex items-start gap-3 sm:w-72 shrink-0 shadow-sm">
                   <div className="bg-[#FAF7F2] p-2 rounded-xl text-brand-brown">
@@ -208,15 +207,15 @@ const CakeBuilderModal = ({ onClose }) => {
               {/* 2x2 Grid for Base */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {bases.map(b => (
-                  <div 
-                    key={b.id} 
+                  <div
+                    key={b.id}
                     onClick={() => setBase(b)}
                     className={`relative flex flex-col cursor-pointer rounded-2xl transition-all border-2 bg-white overflow-hidden group ${base?.id === b.id ? 'border-brand-brown shadow-md' : 'border-[#E6DFD3] hover:border-brand-rose/50 shadow-sm'}`}
                   >
                     <div className="aspect-[4/3] w-full overflow-hidden bg-[#FAF7F2] relative">
-                      <img src={b.image || 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&q=80'} alt={b.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <img src={b.image || 'src\assets\long_banner.png'} alt={b.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                     </div>
-                    
+
                     <div className="p-5 bg-white flex flex-col justify-between flex-1">
                       <div className="flex justify-between items-start mb-2">
                         <div>
@@ -242,11 +241,10 @@ const CakeBuilderModal = ({ onClose }) => {
                     <button
                       key={w.id}
                       onClick={() => setWeight(w)}
-                      className={`px-8 py-3 rounded-full font-bold text-sm transition-all border-2 ${
-                        weight?.id === w.id 
-                          ? 'bg-brand-brown text-white border-brand-brown shadow-md' 
-                          : 'bg-white text-stone-600 border-[#E6DFD3] hover:border-brand-brown/50 shadow-sm'
-                      }`}
+                      className={`px-8 py-3 rounded-full font-bold text-sm transition-all border-2 ${weight?.id === w.id
+                        ? 'bg-brand-brown text-white border-brand-brown shadow-md'
+                        : 'bg-white text-stone-600 border-[#E6DFD3] hover:border-brand-brown/50 shadow-sm'
+                        }`}
                     >
                       {t(w.name) || w.name}
                     </button>
@@ -263,13 +261,19 @@ const CakeBuilderModal = ({ onClose }) => {
               <p className="text-sm text-stone-500 mb-8 font-medium">Choose your cake's core flavour profile.</p>
               <div className="space-y-4">
                 {flavours.map(f => (
-                  <div 
-                    key={f.id} 
+                  <div
+                    key={f.id}
                     onClick={() => setFlavour(f)}
                     className={`flex items-center justify-between p-4 rounded-2xl cursor-pointer border-2 bg-white transition-all ${flavour?.id === f.id ? 'border-brand-brown bg-[#FAF7F2] shadow-sm' : 'border-[#E6DFD3] hover:border-brand-rose/50 shadow-sm'}`}
                   >
                     <div className="flex items-center gap-4">
-                      {f.image ? <img src={f.image} className="w-14 h-14 rounded-full object-cover shadow-sm border border-[#E6DFD3]" alt="" /> : <div className="w-14 h-14 rounded-full bg-[#FAF7F2] border border-[#E6DFD3]" />}
+                      {f.image ? (
+                        <div className="w-14 h-14 rounded-full overflow-hidden relative shadow-sm border border-[#E6DFD3] shrink-0 bg-white">
+                          <img src={f.image} className="absolute inset-0 w-full h-full object-cover block" alt="" />
+                        </div>
+                      ) : (
+                        <div className="w-14 h-14 rounded-full bg-[#FAF7F2] border border-[#E6DFD3] shrink-0" />
+                      )}
                       <span className={`font-bold text-base ${flavour?.id === f.id ? 'text-brand-brown' : 'text-stone-700'}`}>{t(f.name) || f.name}</span>
                     </div>
                     <div className="flex items-center gap-5">
@@ -295,8 +299,8 @@ const CakeBuilderModal = ({ onClose }) => {
               <p className="text-sm text-stone-500 mb-8 font-medium">The perfect outer layer for your cake.</p>
               <div className="space-y-4">
                 {frostings.map(f => (
-                  <div 
-                    key={f.id} 
+                  <div
+                    key={f.id}
                     onClick={() => setFrosting(f)}
                     className={`flex items-center justify-between p-4 rounded-2xl cursor-pointer border-2 bg-white transition-all ${frosting?.id === f.id ? 'border-brand-brown bg-[#FAF7F2] shadow-sm' : 'border-[#E6DFD3] hover:border-brand-rose/50 shadow-sm'}`}
                   >
@@ -332,11 +336,11 @@ const CakeBuilderModal = ({ onClose }) => {
                       <div className={`w-6 h-6 rounded-md flex items-center justify-center border-2 transition-colors ${selectedToppings[tOption.id] ? 'bg-brand-brown border-brand-brown text-white' : 'border-[#E6DFD3] bg-white'}`}>
                         {selectedToppings[tOption.id] && <Check className="w-4 h-4" strokeWidth={3} />}
                       </div>
-                      <input 
-                        type="checkbox" 
-                        checked={!!selectedToppings[tOption.id]} 
-                        onChange={() => toggleTopping(tOption.id)} 
-                        className="hidden" 
+                      <input
+                        type="checkbox"
+                        checked={!!selectedToppings[tOption.id]}
+                        onChange={() => toggleTopping(tOption.id)}
+                        className="hidden"
                       />
                       {tOption.image ? <img src={tOption.image} className="w-12 h-12 rounded-lg object-cover shadow-sm border border-[#E6DFD3]" alt="" /> : <div className="w-12 h-12 rounded-lg bg-[#FAF7F2] border border-[#E6DFD3]" />}
                       <span className={`font-bold text-base ${selectedToppings[tOption.id] ? 'text-brand-brown' : 'text-stone-700'}`}>{t(tOption.name) || tOption.name}</span>
@@ -354,7 +358,7 @@ const CakeBuilderModal = ({ onClose }) => {
               <div>
                 <h3 className="text-2xl font-serif font-bold text-brand-brown mb-2">Cake Message</h3>
                 <p className="text-sm text-stone-500 mb-4 font-medium">What should we write on the cake?</p>
-                <textarea 
+                <textarea
                   value={message}
                   onChange={e => setMessage(e.target.value)}
                   placeholder="e.g., Happy Birthday John!"
@@ -365,19 +369,19 @@ const CakeBuilderModal = ({ onClose }) => {
               <div>
                 <h3 className="text-xl font-serif font-bold text-brand-brown mb-2">Reference Image</h3>
                 <p className="text-sm text-stone-500 mb-4 font-medium">Have a specific design in mind? Upload a reference.</p>
-                
+
                 {referenceFile ? (
                   <div className="relative rounded-xl border border-stone-200 p-2 flex items-center gap-4 bg-[#FAF7F2]">
-                    <img 
-                      src={URL.createObjectURL(referenceFile)} 
-                      alt="Reference Preview" 
+                    <img
+                      src={URL.createObjectURL(referenceFile)}
+                      alt="Reference Preview"
                       className="w-16 h-16 object-cover rounded-lg border border-stone-200"
                     />
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-bold text-stone-800 truncate">{referenceFile.name}</p>
                       <p className="text-xs text-stone-500">{(referenceFile.size / 1024 / 1024).toFixed(2)} MB</p>
                     </div>
-                    <button 
+                    <button
                       onClick={() => setReferenceFile(null)}
                       className="p-2 text-stone-400 hover:text-red-500 transition-colors"
                     >
@@ -386,13 +390,13 @@ const CakeBuilderModal = ({ onClose }) => {
                   </div>
                 ) : (
                   <div className="border-2 border-dashed border-stone-300 rounded-xl p-6 text-center hover:bg-stone-50 transition-colors cursor-pointer relative">
-                    <input 
-                      type="file" 
-                      accept="image/*" 
+                    <input
+                      type="file"
+                      accept="image/*"
                       onChange={(e) => {
                         if (e.target.files?.[0]) setReferenceFile(e.target.files[0]);
-                      }} 
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                      }}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
                     <Upload className="w-8 h-8 text-stone-400 mx-auto mb-3" />
                     <p className="text-sm font-bold text-stone-600">Click to upload reference design (Optional)</p>
@@ -407,7 +411,7 @@ const CakeBuilderModal = ({ onClose }) => {
           {step === 6 && (
             <div className="animate-fade-in max-w-lg mx-auto space-y-6">
               <h3 className="text-2xl font-serif font-bold text-brand-brown mb-6">Review Order</h3>
-              
+
               <div className="bg-[#FAF7F2] p-8 rounded-[2rem] border border-[#E6DFD3] space-y-5 shadow-sm">
                 <div className="flex justify-between items-center pb-4 border-b border-[#F2EAE1]">
                   <span className="text-sm font-bold text-stone-500">Base</span>
@@ -443,7 +447,7 @@ const CakeBuilderModal = ({ onClose }) => {
                   <span className="text-sm font-bold text-stone-500">Message</span>
                   <span className="text-sm font-bold text-stone-800">{message || 'None'}</span>
                 </div>
-                
+
                 {toppings.filter(tOpt => selectedToppings[tOpt.id]).length > 0 && (
                   <div className="pt-2">
                     <span className="text-sm font-bold text-stone-500 mb-3 block">Toppings</span>
@@ -474,16 +478,16 @@ const CakeBuilderModal = ({ onClose }) => {
               <Price amount={calculateTotal()} size="xlarge" className="text-xl sm:text-2xl text-brand-brown leading-none" />
             </div>
           </div>
-          
+
           {step < 6 ? (
-            <button 
+            <button
               onClick={nextStep}
               className="bg-brand-brown hover:bg-[#2D1B19] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full font-bold transition-all flex items-center gap-2 shadow-lg active:scale-95 text-sm sm:text-base"
             >
               Next Step <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           ) : (
-            <button 
+            <button
               onClick={handleAddToCart}
               className="bg-brand-brown hover:bg-[#2D1B19] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full font-bold shadow-lg transition-all active:scale-95 flex items-center gap-2 text-sm sm:text-base"
             >
@@ -491,7 +495,7 @@ const CakeBuilderModal = ({ onClose }) => {
             </button>
           )}
         </div>
-        
+
       </div>
     </div>
   );
