@@ -78,7 +78,7 @@ const SavedDetailsModal = ({ onClose }) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Rahul"
-                className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown bg-white transition-all text-sm font-medium text-brand-brown"
+                className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown bg-white transition-all text-base font-medium text-brand-brown"
               />
             </div>
             
@@ -90,7 +90,7 @@ const SavedDetailsModal = ({ onClose }) => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="e.g. 9876543210"
-                className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown bg-white transition-all text-sm font-medium text-brand-brown"
+                className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown bg-white transition-all text-base font-medium text-brand-brown"
               />
             </div>
           </div>

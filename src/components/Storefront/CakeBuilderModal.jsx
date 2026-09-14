@@ -358,7 +358,7 @@ const CakeBuilderModal = ({ onClose }) => {
                   value={message}
                   onChange={e => setMessage(e.target.value)}
                   placeholder="e.g., Happy Birthday John!"
-                  className="w-full p-6 border-2 border-[#E6DFD3] rounded-2xl outline-none focus:border-brand-brown focus:ring-4 focus:ring-brand-brown/10 resize-none h-32 bg-white shadow-sm transition-all font-medium text-brand-brown"
+                  className="w-full p-6 border-2 border-[#E6DFD3] rounded-2xl outline-none focus:border-brand-brown focus:ring-4 focus:ring-brand-brown/10 resize-none h-32 bg-white shadow-sm transition-all font-medium text-brand-brown text-base"
                 ></textarea>
               </div>
 

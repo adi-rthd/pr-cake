@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { X, Trash2, Calendar, Clock, User, Phone, ShoppingBag } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -147,7 +148,7 @@ const CartDrawer = () => {
 
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
       <div 
@@ -156,7 +157,7 @@ const CartDrawer = () => {
       ></div>
       
       {/* Drawer */}
-      <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-slide-in-right border-l border-[#E6DFD3]">
+      <div className="relative w-full max-w-md bg-white h-[100dvh] shadow-2xl flex flex-col animate-slide-in-right border-l border-[#E6DFD3]">
         
         {/* Header */}
         <div className="flex items-center justify-between p-8 border-b border-[#E6DFD3] bg-[#FAF7F2]">
@@ -223,19 +224,19 @@ const CartDrawer = () => {
                 <div className="grid grid-cols-2 gap-3">
                   <div className="col-span-2 relative">
                     <User className="absolute left-4 top-3.5 w-4 h-4 text-stone-400" />
-                    <input type="text" name="name" required placeholder={t('yourName')} value={formData.name} onChange={handleInputChange} className="w-full pl-11 pr-4 py-3 border border-[#E6DFD3] rounded-2xl focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown outline-none text-sm bg-white transition-all font-medium text-brand-brown" />
+                    <input type="text" name="name" required placeholder={t('yourName')} value={formData.name} onChange={handleInputChange} className="w-full pl-11 pr-4 py-3 border border-[#E6DFD3] rounded-2xl focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown outline-none text-base bg-white transition-all font-medium text-brand-brown" />
                   </div>
                   <div className="col-span-2 relative">
                     <Phone className="absolute left-4 top-3.5 w-4 h-4 text-stone-400" />
-                    <input type="tel" inputMode="tel" name="phone" required placeholder={t('phoneNumber')} value={formData.phone} onChange={handleInputChange} className="w-full pl-11 pr-4 py-3 border border-[#E6DFD3] rounded-2xl focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown outline-none text-sm bg-white transition-all font-medium text-brand-brown" />
+                    <input type="tel" inputMode="tel" name="phone" required placeholder={t('phoneNumber')} value={formData.phone} onChange={handleInputChange} className="w-full pl-11 pr-4 py-3 border border-[#E6DFD3] rounded-2xl focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown outline-none text-base bg-white transition-all font-medium text-brand-brown" />
                   </div>
                   <div className="relative">
                     <Calendar className="absolute left-4 top-3.5 w-4 h-4 text-stone-400" />
-                    <input type="date" name="date" required value={formData.date} onChange={handleInputChange} className="w-full pl-11 pr-4 py-3 border border-[#E6DFD3] rounded-2xl focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown outline-none text-sm bg-white transition-all font-medium text-brand-brown" />
+                    <input type="date" name="date" required value={formData.date} onChange={handleInputChange} className="w-full pl-11 pr-4 py-3 border border-[#E6DFD3] rounded-2xl focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown outline-none text-base bg-white transition-all font-medium text-brand-brown" />
                   </div>
                   <div className="relative">
                     <Clock className="absolute left-4 top-3.5 w-4 h-4 text-stone-400" />
-                    <input type="time" name="time" required value={formData.time} onChange={handleInputChange} className="w-full pl-11 pr-4 py-3 border border-[#E6DFD3] rounded-2xl focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown outline-none text-sm bg-white transition-all font-medium text-brand-brown" />
+                    <input type="time" name="time" required value={formData.time} onChange={handleInputChange} className="w-full pl-11 pr-4 py-3 border border-[#E6DFD3] rounded-2xl focus:ring-2 focus:ring-brand-brown/10 focus:border-brand-brown outline-none text-base bg-white transition-all font-medium text-brand-brown" />
                   </div>
                 </div>
 
@@ -264,7 +265,8 @@ const CartDrawer = () => {
           </>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

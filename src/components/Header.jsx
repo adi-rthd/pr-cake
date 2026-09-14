@@ -114,7 +114,7 @@ const Header = ({ searchTerm = '', setSearchTerm = () => {} }) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder={t('searchPlaceholder')}
-              className="bg-transparent border-none outline-none text-sm ml-2 w-full md:w-32 placeholder:text-stone-400 text-brand-brown" 
+              className="bg-transparent border-none outline-none text-base ml-2 w-full md:w-32 placeholder:text-stone-400 text-brand-brown" 
             />
           </div>
 

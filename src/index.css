@@ -14,14 +14,44 @@
   --color-brand-veg: #2B7A0B; /* Muted crisp green */
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
 }
 
 body {
   background-color: var(--color-brand-cream);
-  color: #2D1B19; /* Dark espresso text */
+  color: #2D1B19;
   font-family: var(--font-sans);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Custom scrollbar for modals/drawers */

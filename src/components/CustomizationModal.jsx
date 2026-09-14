@@ -265,7 +265,7 @@ const CustomizationModal = ({ cake, onClose }) => {
                 placeholder="e.g. Happy Anniversary!"
                 value={customMessage}
                 onChange={(e) => setCustomMessage(e.target.value)}
-                className="w-full p-4 border border-[#E6DFD3] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E8DCCB] focus:border-brand-brown bg-white transition-all text-sm font-medium text-brand-brown"
+                className="w-full p-4 border border-[#E6DFD3] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E8DCCB] focus:border-brand-brown bg-white transition-all text-base font-medium text-brand-brown"
                 maxLength={40}
               />
             </div>
@@ -296,7 +296,7 @@ const CustomizationModal = ({ cake, onClose }) => {
                       type="text" 
                       value={reviewName} 
                       onChange={e => setReviewName(e.target.value)} 
-                      className="w-full p-3 border border-[#E6DFD3] rounded-lg focus:outline-none focus:border-brand-brown text-sm"
+                      className="w-full p-3 border border-[#E6DFD3] rounded-lg focus:outline-none focus:border-brand-brown text-base"
                       placeholder="e.g. Aditi"
                     />
                   </div>
@@ -321,7 +321,7 @@ const CustomizationModal = ({ cake, onClose }) => {
                       required 
                       value={reviewText} 
                       onChange={e => setReviewText(e.target.value)} 
-                      className="w-full p-3 border border-[#E6DFD3] rounded-lg focus:outline-none focus:border-brand-brown text-sm resize-none h-24"
+                      className="w-full p-3 border border-[#E6DFD3] rounded-lg focus:outline-none focus:border-brand-brown text-base resize-none h-24"
                       placeholder="What did you think of this cake?"
                     />
                   </div>
